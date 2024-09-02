@@ -161,7 +161,7 @@ ej_2i_digitoUnidades :: Integer -> Integer
     Asegura: {res = n mod 10}
   }
 --}
-ej_2i_digitoUnidades n = mod n 10
+ej_2i_digitoUnidades n = mod (abs n) 10
 
 -- * Ej 2.j
 
@@ -225,3 +225,121 @@ ej_4c_distanciaPuntos :: (Float, Float) -> (Float, Float) -> Float
 --}
 ej_4c_distanciaPuntos (x1, y1) (x2, y2) =
   sqrt ((x1 - x2) ^ 2 + (y1 - y2) ^ 2)
+
+-- * Ej 4.d
+ej_4d_sumaTerna :: (Integer, Integer, Integer) -> Integer
+{--
+  problema sumaTerna(t: (ZxZxZ)): Z {
+    Requiere: {True}
+    Asegura: {res = t_1 + t_2 + t_3}
+  }
+--}
+ej_4d_sumaTerna (x, y, z) = x + y + z
+
+-- * Ej 4.e
+ej_4e_sumarSoloMultiplos :: (Integer, Integer, Integer) -> Integer -> Integer
+{--
+  problema sumarSoloMultiplos(t: (ZxZxZ), n:Z): Z {
+    Requiere: {n > 0}
+    Asegura: {res = suma de elementos de t que sean múltiplos de n}
+  }
+--}
+ej_4e_sumarSoloMultiplos (x, y, z) n = 
+  sum (filter (\i-> not (ej_2h_esMultiploDe i n)) [x, y, z]) -- ? ¿Hay mejor manera de hacer esto?
+
+-- * Ej 4.f
+ej_4f_posPrimerPar :: (Integer, Integer, Integer) -> Integer 
+{--
+  problema posPrimerPar(t: (ZxZxZ)): Z
+    Requiere: {True}
+    Asegura: {res = posición del primer número par en t}
+    Asegura: {res = 4 si no hay pares en }
+--}
+ej_4f_posPrimerPar (x, y, z)
+ | ej_2h_esMultiploDe x 2 = 0
+ | ej_2h_esMultiploDe y 2 = 1
+ | ej_2h_esMultiploDe z 2 = 2
+ | otherwise = 4
+
+-- * Ej 4.g
+
+ej_4g_crearPar :: a -> b -> (a, b)
+{--
+problema crearPar (a, b): (AxB) {
+Requiere: {True}
+Asegura: {res = (a, b)}
+}
+--}
+ej_4g_crearPar x y = (x, y)
+
+-- * Ej 4.h
+
+ej_4h_invertir ::(a, b) -> (b, a)
+{--
+  problema invertir (d:(AxB)): (BxA) {
+    Requiere: {True}
+    Asegura: {res = (snd(d), fst(d)}
+  }
+--}
+ej_4h_invertir (x, y) = (y, x)
+
+-- * Ej 4.i
+
+type Punto2D = (Float, Float)
+ej_4i_prodInt :: Punto2D -> Punto2D -> Float
+ej_4i_prodInt x1 x2 = fst(x1)*fst(x2) + snd(x1)*snd(x2)
+ej_4i_todoMenor :: Punto2D -> Punto2D -> Bool
+ej_4i_todoMenor x1 x2 = fst(x1)<fst(x2) && snd(x1)<snd(x2)
+ej_4i_distanciaPuntos :: Punto2D -> Punto2D -> Float
+ej_4i_distanciaPuntos x1 x2 = sqrt((fst(x1) - fst(x2))^2 + (snd(x1) - snd(x2))^2)
+
+-- * Ej 5
+ej_5_todosMenores :: (Integer, Integer, Integer) -> Bool
+{--
+  problema todosMenores (t : Z × Z × Z) : Bool {
+    requiere: {True}
+    asegura: {(res = true) <=> ((f (t0) > g(t0)) ∧ (f (t1) > g(t1)) ∧ (f (t2) > g(t2)))}
+  }
+--}
+ej_5_todosMenores (x, y, z) = (f(x) > g(x)) && (f(y) > g(y)) && (f(z) > g(z))
+ where 
+  f:: Integer->Integer
+  f n | n<=7 = n^2
+      | n>7 = 2*n + 1
+  g:: Integer->Integer
+  g n | ej_2h_esMultiploDe n 2 = div n 2
+      | otherwise = 3*n + 1
+
+-- * Ej 6
+
+type Anio = Integer
+type EsBisiesto = Bool
+ej_6_bisiesto :: Anio -> EsBisiesto
+{--
+  problema bisiesto (año: Z): Bool {
+    Requiere: {True}
+    Asegura: {res = false <=> año no es múltiplo de 4, o año es múltiplo de 100 pero no de 400}
+  }
+--}
+ej_6_bisiesto a
+ | not (ej_2h_esMultiploDe a 4) = False
+ | (ej_2h_esMultiploDe a 100)&&(not (ej_2h_esMultiploDe a 400)) = False
+ | otherwise = True
+
+-- * Ej 7.a
+ej_7a_distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Float
+{--
+  problema distanciaManhattan (p:(R,R,R), q:(R,R,R)):  R {
+    Requiere: {True}
+    Asegura: {res = suma de i=0 a 2 de abs(pi - qi)}
+  }
+--}
+ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
+  abs(x1-x2) + abs(y1 - y2) + abs(z1 - z2)
+
+-- * Ej 7.b
+type Coordenada3d = (Float, Float, Float)
+ej_7b_distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
+ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
+  abs(x1-x2) + abs(y1 - y2) + abs(z1 - z2)
+
