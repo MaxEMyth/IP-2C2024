@@ -1,3 +1,5 @@
+import Text.XHtml (base)
+
 -- !Mi resolución de la guía 3 de Haskell para Intro a la Programación.
 
 -- * Ej 1.a
@@ -356,3 +358,101 @@ type Coordenada3d = (Float, Float, Float)
 ej_7b_distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
 ej_7b_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
   abs (x1 - x2) + abs (y1 - y2) + abs (z1 - z2)
+
+-- * Ej 8
+
+ej_8_comparar :: Integer -> Integer -> Integer
+{-
+  problema comparar(a:Z, b:Z): Z {
+    Requiere: {True}
+    Asegura: {(res = 1 ↔ sumaUltimosDosDigitos(a) < sumaUltimosDosDigitos(b))}
+    Asegura: {(res = −1 ↔ sumaUltimosDosDigitos(a) > sumaUltimosDosDigitos(b))}
+    Asegura: {(res = 0 ↔ sumaUltimosDosDigitos(a) = sumaUltimosDosDigitos(b))}
+  }
+-}
+ej_8_comparar a b
+  | d_a < d_b = 1
+  | d_a > d_b = -1
+  | d_a == d_b = 0
+  where
+    d_a = ej_8_sumaUltimosDosDigitos a
+    d_b = ej_8_sumaUltimosDosDigitos b
+
+ej_8_sumaUltimosDosDigitos :: Integer -> Integer
+{-
+  problema sumaUltimosDosDigitos(x:Z): Z {
+    Requiere: {True}
+    Asegura: {res = (|x| mod 10)+((|x|//10) mod 10)}
+  }
+-}
+ej_8_sumaUltimosDosDigitos x = mod (ej_2a_absoluto x) 10 + mod (div (ej_2a_absoluto x) 10) 10
+
+-- * Ej 9
+
+ej_9a_f1 :: Float -> Float
+{-
+  problema esCero(n:R): R {
+    Requiere: {True}
+    Asegura: {res = 1 <=> n==0}
+    Asegura: {res = 0 <=> n!=0}
+  }
+  *"f1 toma un número Real n. Devuelve 1 si n es igual a cero, y 0 si no."
+-}
+ej_9a_f1 n
+  | n == 0 = 1
+  | otherwise = 0
+
+ej_9b_f2 :: Float -> Float
+{-
+  problema 	masMenosQuince(n:R): R {
+    Requiere: {n == 1 || n == -1}
+    Asegura: {res = 15 <=> n==1}
+    Asegura: {res = -15 <=> n==-1}
+  }
+  *"f2 toma un número real. si n es igual a 1, devuelve 15. Si es igual a -1, devuelve -15. No está definida para ningún otro valor de n."
+-}
+ej_9b_f2 n
+  | n == 1 = 15
+  | n == -1 = -15
+
+ej_9c_f3 :: Float -> Float
+{-
+  problema sieteOCinco(n:R): R {
+    Requiere: {True}
+    Asegura: {res = 7 si n<=9, o sino res = 5 si n>=3}
+  }
+  *"f3 recibe un número real y devuelve 7 si es menor a 9. Si no lo es, devuelve 5 si n es mayor a 3 (que siempre se cumplirá pues no ser menor a 9 fuerza la condición de ser mayor a 3)."
+-}
+ej_9c_f3 n
+  | n <= 9 = 7
+  | n >= 3 = 5
+
+ej_9d_f4 :: Float -> Float -> Float
+{-
+  problema promedio(x:R, y:R): R {
+    Requiere: {True}
+    Asegura: {res = (x + y) / 2}
+  }
+  *"f4 toma dos números reales y devuelve el promedio entre ellos."
+-}
+ej_9d_f4 x y = (x + y) / 2
+
+ej_9e_f5 :: (Float, Float) -> Float
+{-
+  problema promedio2(p:(RxR)): R {
+    Requiere: {True}
+    Asegura: {res = (fst(p) + snd(p)) / 2}
+  }
+  *"f5 toma una dupla de números reales y devuelve el promedio entre ellos."
+-}
+ej_9e_f5 (x, y) = (x + y) / 2
+
+ej_9f_f6 :: Float -> Int -> Bool
+{-
+  problema esTruncado(a:R, b:Z): Bool {
+    Requiere: {True}
+    Asegura: {res = True <=> b es el número entero (entre 0 y a) más cercano al valor de a}
+  }
+  *"f6 responde si b es la versión truncada de a, es decir, si redondeando a hacia el cero obtenemos b."
+-}
+ej_9f_f6 a b = truncate a == b
