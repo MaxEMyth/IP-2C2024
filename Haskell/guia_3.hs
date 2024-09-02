@@ -359,9 +359,22 @@ ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
 
 type Coordenada3d = (Float, Float, Float)
 
+-- * Si no quiero usar pattern matching como en el ítem anterior, debo definir operaciones para extraer los elementos de la terna.
+
+ej_7b_fst :: Coordenada3d -> Float
+ej_7b_fst (a, _, _) = a
+
+ej_7b_snd :: Coordenada3d -> Float
+ej_7b_snd (_, b, _) = b
+
+ej_7b_thd :: Coordenada3d -> Float
+ej_7b_thd (_, _, c) = c
+
 ej_7b_distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
-ej_7b_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
-  ej_7_absoluto (x1 - x2) + ej_7_absoluto (y1 - y2) + ej_7_absoluto (z1 - z2)
+ej_7b_distanciaManhattan p q =
+  ej_7_absoluto (ej_7b_fst p - ej_7b_fst q) +
+   ej_7_absoluto (ej_7b_snd p - ej_7b_snd q) +
+    ej_7_absoluto (ej_7b_thd p - ej_7b_thd q)
 
 -- * Ej 8
 
