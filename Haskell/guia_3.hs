@@ -163,7 +163,7 @@ ej_2i_digitoUnidades :: Integer -> Integer
     Asegura: {res = n mod 10}
   }
 -}
-ej_2i_digitoUnidades n = mod (abs n) 10
+ej_2i_digitoUnidades n = mod (ej_2a_absoluto n) 10
 
 -- * Ej 2.j
 
@@ -348,8 +348,12 @@ ej_7a_distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Fl
     Asegura: {res = suma de i=0 a 2 de abs(pi - qi)}
   }
 -}
+ej_7_absoluto :: Float -> Float
+ej_7_absoluto x
+  | x >= 0 = x
+  | otherwise = -x
 ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
-  abs (x1 - x2) + abs (y1 - y2) + abs (z1 - z2)
+  ej_7_absoluto (x1 - x2) + ej_7_absoluto (y1 - y2) + ej_7_absoluto (z1 - z2)
 
 -- * Ej 7.b
 
@@ -357,7 +361,7 @@ type Coordenada3d = (Float, Float, Float)
 
 ej_7b_distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
 ej_7b_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
-  abs (x1 - x2) + abs (y1 - y2) + abs (z1 - z2)
+  ej_7_absoluto (x1 - x2) + ej_7_absoluto (y1 - y2) + ej_7_absoluto (z1 - z2)
 
 -- * Ej 8
 
