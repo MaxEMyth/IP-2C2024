@@ -1,5 +1,3 @@
-import Text.XHtml (base)
-
 -- !Mi resolución de la guía 3 de Haskell para Intro a la Programación.
 
 -- * Ej 1.a
@@ -34,7 +32,7 @@ ej_2a_absoluto :: Integer -> Integer
     Asegura: {res = x <=> x < 0}
   }
 -}
--- Alternativamente; ej_2a_absoluto = abs
+-- ? Alternativamente; ej_2a_absoluto = abs
 ej_2a_absoluto x
   | x >= 0 = x
   | otherwise = -x
@@ -372,9 +370,9 @@ ej_7b_thd (_, _, c) = c
 
 ej_7b_distanciaManhattan :: Coordenada3d -> Coordenada3d -> Float
 ej_7b_distanciaManhattan p q =
-  ej_7_absoluto (ej_7b_fst p - ej_7b_fst q) +
-   ej_7_absoluto (ej_7b_snd p - ej_7b_snd q) +
-    ej_7_absoluto (ej_7b_thd p - ej_7b_thd q)
+  ej_7_absoluto (ej_7b_fst p - ej_7b_fst q)
+    + ej_7_absoluto (ej_7b_snd p - ej_7b_snd q)
+    + ej_7_absoluto (ej_7b_thd p - ej_7b_thd q)
 
 -- * Ej 8
 
