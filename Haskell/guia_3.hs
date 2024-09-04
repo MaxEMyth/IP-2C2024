@@ -339,6 +339,10 @@ ej_6_bisiesto a
 
 -- * Ej 7.a
 
+ej_7_absoluto :: Float -> Float -- función auxiliar.
+ej_7_absoluto x
+  | x >= 0 = x
+  | otherwise = -x
 ej_7a_distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Float
 {-
   problema distanciaManhattan (p:(R,R,R), q:(R,R,R)):  R {
@@ -346,10 +350,6 @@ ej_7a_distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Fl
     Asegura: {res = suma de i=0 a 2 de abs(pi - qi)}
   }
 -}
-ej_7_absoluto :: Float -> Float
-ej_7_absoluto x
-  | x >= 0 = x
-  | otherwise = -x
 ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
   ej_7_absoluto (x1 - x2) + ej_7_absoluto (y1 - y2) + ej_7_absoluto (z1 - z2)
 

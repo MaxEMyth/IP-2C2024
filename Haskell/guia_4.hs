@@ -1,4 +1,3 @@
-import qualified GHC.Float as Data.Float
 -- !Mi resolución de la guía 4 de Haskell para Intro a la Programación.
 
 -- * Ejercicio 1
