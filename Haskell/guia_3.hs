@@ -247,8 +247,15 @@ ej_4e_sumarSoloMultiplos :: (Integer, Integer, Integer) -> Integer -> Integer
   }
 -}
 ej_4e_sumarSoloMultiplos (x, y, z) n =
-  sum (filter (\i -> not (ej_2h_esMultiploDe i n)) [x, y, z]) -- ? ¿Hay mejor manera de hacer esto?
-
+ | ej_2h_esMultiploDe x n && ej_2h_esMultiploDe y n && ej_2h_esMultiploDe z n = x+y+z
+ | ej_2h_esMultiploDe x n && ej_2h_esMultiploDe y n = x+y
+ | ej_2h_esMultiploDe y n && ej_2h_esMultiploDe z n = y+z
+ | ej_2h_esMultiploDe x n && ej_2h_esMultiploDe z n = x+z
+ | ej_2h_esMultiploDe x n = x
+ | ej_2h_esMultiploDe y n = y
+ | ej_2h_esMultiploDe z n = z
+ | otherwise = 0
+ --sum (filter (\i -> not (ej_2h_esMultiploDe i n)) [x, y, z])
 -- * Ej 4.f
 
 ej_4f_posPrimerPar :: (Integer, Integer, Integer) -> Integer
@@ -352,7 +359,7 @@ ej_7a_distanciaManhattan :: (Float, Float, Float) -> (Float, Float, Float) -> Fl
 -}
 ej_7a_distanciaManhattan (x1, y1, z1) (x2, y2, z2) =
   ej_7_absoluto (x1 - x2) + ej_7_absoluto (y1 - y2) + ej_7_absoluto (z1 - z2)
-
+  
 -- * Ej 7.b
 
 type Coordenada3d = (Float, Float, Float)
