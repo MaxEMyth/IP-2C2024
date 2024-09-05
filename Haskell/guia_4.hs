@@ -22,3 +22,7 @@ parteEntera x = head [i | i <- l x, (fromInteger i)<=x, x<(fromInteger (i+1))]
    | x>=0 = [0, 1..]
    | x < 0 = [0, -1..]
 -}
+parteEntera x
+ | x>=1 = parteEntera (x-1)
+ | x<0 = parteEntera (x+1)
+ | otherwise = 0
