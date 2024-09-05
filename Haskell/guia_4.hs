@@ -43,4 +43,15 @@ esDivisible n d
   | n < 0 = False
   | otherwise = esDivisible (n - d) d
 
+-- * Ejercicio 4
 
+sumaImpares :: Integer -> Integer
+{-
+  problema sumaImpares(n: Z) {
+    Requiere: {n>0}
+    Asegura: {res = suma de i=1 a n del i-esimo impar}
+  }
+-}
+sumaImpares n
+  | n == 1 = 1
+  | otherwise = (2 * n -1) + sumaImpares (n -1)
