@@ -5,9 +5,10 @@
 fibonacci :: Integer -> Integer
 fibonacci 0 = 0
 fibonacci 1 = 1
-fibonacci n = fibonacci (n-1) + fibonacci(n-2)
+fibonacci n = fibonacci (n -1) + fibonacci (n -2)
 
 -- * Ejercicio 2
+
 parteEntera :: Float -> Integer
 {-
   problema parteEntera (x: R) : Z {
@@ -15,14 +16,15 @@ parteEntera :: Float -> Integer
     asegura: { resultado ≤ x < resultado + 1 }
     }
 -}
-{- Solución con Comprensión
-parteEntera x = head [i | i <- l x, (fromInteger i)<=x, x<(fromInteger (i+1))]
- where 
-  l x
-   | x>=0 = [0, 1..]
-   | x < 0 = [0, -1..]
+-- Solución con Comprensión
+{-
+  parteEntera x = head [i | i <- l x, (fromInteger i)<=x, x<(fromInteger (i+1))]
+  where
+    l x
+    | x>=0 = [0, 1..]
+    | x < 0 = [0, -1..]
 -}
 parteEntera x
- | x>=1 = parteEntera (x-1)
- | x<0 = parteEntera (x+1)
- | otherwise = 0
+  | x >= 1 = parteEntera (x -1)
+  | x < 0 = parteEntera (x + 1)
+  | otherwise = 0
