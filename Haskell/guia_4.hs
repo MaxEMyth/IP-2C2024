@@ -28,3 +28,19 @@ parteEntera x
   | x >= 1 = parteEntera (x -1)
   | x < 0 = parteEntera (x + 1)
   | otherwise = 0
+
+-- * Ejercicio 3
+
+esDivisible :: Integer -> Integer -> Bool
+{-
+  problema esDivisible (n:Z, d:Z) {
+    Requiere: {n>0, d>0}
+    Asegura: {res = True <=> Existe k en Z tq n = k*d}
+  }
+-}
+esDivisible n d
+  | n == 0 = True
+  | n < 0 = False
+  | otherwise = esDivisible (n - d) d
+
+
